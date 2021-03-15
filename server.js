@@ -5,10 +5,10 @@ const path = require('path');
 const app = express();
 
 // Serve only the static files form the dist directory
-app.use(express.static('./dist/tax-calculator-ui'));
+app.use(express.static('./dist/tax-calculator'));
 
 app.get('/*', function(req, res) {
-  res.sendFile('index.html', {root: 'dist/tax-calculator-ui/'}
+  res.sendFile('index.html', {root: 'dist/tax-calculator/'}
   );
 });
 
