@@ -1,0 +1,14 @@
+.calculator .calc-header {
+  background-color: #444444;
+  color: white;
+  padding: 0.5em 1em;
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 1.3em;
+}
+
+.calculator .calc-box {
+  padding: 1em 1em 0.5em 1em;
+  text-align: right;
+  margin-bottom: 1em;
+  background-color: #ececec;
+}

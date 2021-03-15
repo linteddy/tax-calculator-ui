@@ -1,0 +1,28 @@
+<h2>SARS Income Tax Calculator</h2>
+
+<div>
+
+  <div>
+    <input type="hidden" id="year" value="2022"/>
+    Tax year
+    <select>
+      <option value="2021">2021 (Mar 2020 - Feb 2021)</option>
+      <option value="2020">2020 (Mar 2019 - Feb 2020)</option>
+    </select>
+  </div>
+
+  <div>
+    Total taxable salary :
+    <input type="text" class="wide" maxlength="10" id="gross" value="20000"
+           onkeyup="this.value=this.value.replace(/[^1234567890.]/g, '');"/>
+  </div>
+
+  <div>
+    How often do you receive this salary?
+    <select class="wide" id="period">
+      <option value="monthly" selected>Monthly</option>
+      <option value="yearly">Yearly</option>
+    </select>
+  </div>
+  <button>Calculate</button>
+</div>
