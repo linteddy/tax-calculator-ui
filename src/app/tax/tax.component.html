@@ -1,26 +1,26 @@
-<h2>SARS Income Tax Calculator</h2>
-
-<form [formGroup]="calculateTaxForm">
-    <div class="row">
-      <label for="year" class="col-md-6">Tax year</label>
-      <select id=year class="col-md-6">
-        <option value="2021">2021 (Mar 2020 - Feb 2021)</option>
-        <option value="2020">2020 (Mar 2019 - Feb 2020)</option>
-      </select>
-    </div>
-
-    <div class="row" >
-      <label for="gross" class="col-md-6">Total taxable salary</label>
-      <input type="text" id="gross"  class="col-md-6" value="20000" formControlName="gross"
-             onkeyup="this.value=this.value.replace(/[^1234567890.]/g, '');" required/>
-    </div>
-
-    <div class="row">
-      <label for="period" class="col-md-9">How often do you receive this salary?</label>
-      <select  id="period"  class="col-md-3" formControlName="period" required="">
-        <option value="monthly" selected>Monthly</option>
-        <option value="yearly">Yearly</option>
-      </select>
-    </div>
-    <button class="btn-primary" type="submit" [disabled]="!calculateTaxForm.valid">Calculate</button>
-</form>
+<h2>Income Tax Calculator</h2>
+<div class="row">
+  <div>
+    <form [formGroup]="calculateTaxForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="year" class="col-sm-6">Tax year</label>
+        <select id=year formControlName="year" class="col-sm-6" required>
+          <option value="2021">2021 (Mar 2020 - Feb 2021)</option>
+          <option value="2020">2020 (Mar 2019 - Feb 2020)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="gross" class="col-sm-6">Total taxable income</label>
+        <input type="number" id="gross" value="20000" formControlName="gross" class="col-sm-6" required/>
+      </div>
+      <div class="form-group">
+        <label for="period" class="col-sm-6">How often do you receive this income?</label>
+        <select id="period" formControlName="period" class="col-sm-6" required>
+          <option value="monthly" selected>Monthly</option>
+          <option value="yearly">Yearly</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" type="submit" [disabled]="!calculateTaxForm.valid">Calculate</button>
+    </form>
+  </div>
+</div>

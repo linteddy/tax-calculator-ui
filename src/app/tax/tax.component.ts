@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import { Validators } from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-tax',
@@ -18,5 +17,9 @@ export class TaxComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(): void {
+    console.log(this.calculateTaxForm.value.gross);
   }
 }
