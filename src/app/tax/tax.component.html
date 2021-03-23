@@ -1,26 +1,182 @@
-<h2>Income Tax Calculator</h2>
-<div class="row">
-  <div>
+<!--<form [formGroup]="calculateTaxForm" (ngSubmit)="onSubmit()">-->
+
+<!--  <div class="form-group">-->
+<!--    <label for="year" class="col-sm-6">Tax year</label>-->
+<!--    <select id=year formControlName="year" class="col-sm-6" required>-->
+<!--      <option value="2021">2021 (Mar 2020 - Feb 2021)</option>-->
+<!--      <option value="2020">2020 (Mar 2019 - Feb 2020)</option>-->
+<!--    </select>-->
+<!--  </div>-->
+<!--  <div class="form-group">-->
+<!--    <label for="gross" class="col-sm-6">Total taxable income</label>-->
+<!--    <input type="number" id="gross" value="20000" formControlName="gross" class="col-sm-6" required/>-->
+<!--  </div>-->
+<!--  <div class="form-group">-->
+<!--    <label for="period" class="col-sm-6">How often do you receive this income?</label>-->
+<!--    <select id="period" formControlName="period" class="col-sm-6" required>-->
+<!--      <option value="monthly" selected>Monthly</option>-->
+<!--      <option value="yearly">Yearly</option>-->
+<!--    </select>-->
+<!--  </div>-->
+<!--  <button class="btn btn-primary" type="submit" [disabled]="!calculateTaxForm.valid">Calculate</button>-->
+<!--</form>-->
+
+<!--<div *ngIf="incomeTaxResult != null" class="tax-result">-->
+
+<div class="row tax-panel">
+  <div class="col-12 tax-calc">
     <form [formGroup]="calculateTaxForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="year" class="col-sm-6">Tax year</label>
-        <select id=year formControlName="year" class="col-sm-6" required>
-          <option value="2021">2021 (Mar 2020 - Feb 2021)</option>
-          <option value="2020">2020 (Mar 2019 - Feb 2020)</option>
-        </select>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="mb-0">Income</h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <label class="control-label" for="year">Tax Year <span class="font-weight-normal">*</span></label>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <select id=year class="form-control" formControlName="year" required>
+                        <option value="2021">2021 (Mar 2020 - Feb 2021)</option>
+                        <option value="2020">2020 (Mar 2019 - Feb 2020)</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-6">
+                  <label class="control-label" for="age">Age <span class="font-weight-normal">*</span></label>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input type="text" formControlName="age" id="age" class="form-control" placeholder="0"
+                             data-rule-required="true"
+                             data-rule-digits="true" data-rule-min="18" aria-invalid="false">
+                      <div class="input-group-append" id="age-addon">
+                        <div class="input-group-text font-weight-bold">
+                          years
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-6 tc-form-label">
+                  <label class="control-label" for="salary">Total Taxable Earnings <span
+                    class="font-weight-normal">*</span></label>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend" id="salary-addon">
+                        <div class="input-group-text">
+                          R
+                        </div>
+                      </div>
+                      <input type="text" id="salary" class="form-control" formControlName="taxableIncome"
+                             placeholder="0" data-rule-required="true"
+                             data-rule-number="true" data-rule-min="0" aria-invalid="false">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 col-md-6 tc-form-label">
+                  <label class="control-label" for="period">Taxable Earnings Frequency <span
+                    class="font-weight-normal">*</span></label>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                  <div class="form-group">
+                    <div class="input-group">
+                          <select id="period" formControlName="period" class="form-control" required>
+                            <option value="monthly" selected>Monthly</option>
+                            <option value="yearly">Yearly</option>
+                          </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion mt-3" id="taxCalculatorOptional">
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h3 class="mb-0">
+                  <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                          data-target="#collapseMedical" aria-expanded="true" aria-controls="collapseTwo">
+                    Medical Expenses (optional)
+                  </button>
+                </h3>
+              </div>
+              <div id="collapseMedical" class="collapse show" aria-labelledby="headingTwo"
+                   data-parent="#taxCalculatorOptional" style="">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6 tc-form-label">
+                      <label class="control-label" for="numberofdependants">Medical Aid Members + Main <span class="help"
+                                                                                                       data-toggle="tooltip"
+                                                                                                       data-placement="bottom"
+                                                                                                       title=""
+                                                                                                       data-original-title="The number of people registered as dependents on your medical aid.">?</span></label>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                      <div class="form-group">
+                        <input type="text" id="numberofdependants" class="form-control" formControlName="numberOfDependants" placeholder="0"
+                               data-rule-digits="true" data-rule-min="0">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3">
+            <div class="panel-body tax">
+              <div class="row">
+                <div class="col-12 d-flex justify-content-between align-items-center">
+                  <span class="small">* Required fields</span>
+                  <button type="submit" class="btn btn-lg btn-primary" id="calculate" [disabled]="!calculateTaxForm.valid">Calculate</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card card-primary mb-4 mt-4 mt-md-0">
+            <div class="card-header">
+              <h3 class="mb-0">Results</h3>
+            </div>
+            <div class="card-body tax">
+              <div class="row">
+                <div class="col-12">
+                  Income tax before tax credits
+                  <div id="income_tax_before_tax_credits" class="float-right font-weight-bold" *ngIf="calculateTaxForm.valid">R {{incomeTaxResult.payAsYouEarnBeforeTaxCredit}}</div>
+                </div>
+                <div class="col-12">
+                  Tax credits
+                  <div id="tax_credits" class="float-right font-weight-bold" *ngIf="calculateTaxForm.valid">R {{incomeTaxResult.taxCredits}}</div>
+                </div>
+                <div class="col-12">
+                  Income tax after tax credits
+                  <div id="income_tax_after_tax_credits" class="float-right font-weight-bold" *ngIf="calculateTaxForm.valid">R {{incomeTaxResult.payAsYouEarnAfterTaxCredit}}</div>
+                </div>
+                <div class="col-12">
+                  Nett income
+                  <div id="net_monthly_income" class="float-right font-weight-bold" *ngIf="calculateTaxForm.valid">R {{incomeTaxResult.netCash}}</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="gross" class="col-sm-6">Total taxable income</label>
-        <input type="number" id="gross" value="20000" formControlName="gross" class="col-sm-6" required/>
-      </div>
-      <div class="form-group">
-        <label for="period" class="col-sm-6">How often do you receive this income?</label>
-        <select id="period" formControlName="period" class="col-sm-6" required>
-          <option value="monthly" selected>Monthly</option>
-          <option value="yearly">Yearly</option>
-        </select>
-      </div>
-      <button class="btn btn-primary" type="submit" [disabled]="!calculateTaxForm.valid">Calculate</button>
     </form>
   </div>
 </div>
