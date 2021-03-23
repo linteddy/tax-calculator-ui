@@ -70,10 +70,10 @@
                 <div class="col-sm-12 col-md-6">
                   <div class="form-group">
                     <div class="input-group">
-                          <select id="period" formControlName="period" class="form-control" required>
-                            <option value="monthly" selected>Monthly</option>
-                            <option value="yearly">Yearly</option>
-                          </select>
+                      <select id="period" formControlName="period" class="form-control" required>
+                        <option value="MONTHLY" selected>Monthly</option>
+                        <option value="ANNUALLY">Yearly</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -95,15 +95,17 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-sm-12 col-md-6 tc-form-label">
-                      <label class="control-label" for="numberofdependants">Medical Aid Members + Main <span class="help"
-                                                                                                       data-toggle="tooltip"
-                                                                                                       data-placement="bottom"
-                                                                                                       title=""
-                                                                                                       data-original-title="The number of people registered as dependents on your medical aid.">?</span></label>
+                      <label class="control-label" for="numberofdependants">Medical Aid Members + Main <span
+                        class="help"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title=""
+                        data-original-title="The number of people registered as dependents on your medical aid.">?</span></label>
                     </div>
                     <div class="col-sm-12 col-md-6">
                       <div class="form-group">
-                        <input type="text" id="numberofdependants" class="form-control" formControlName="numberOfDependants" placeholder="0"
+                        <input type="text" id="numberofdependants" class="form-control"
+                               formControlName="numberOfDependants" placeholder="0"
                                data-rule-digits="true" data-rule-min="0">
                       </div>
                     </div>
@@ -117,7 +119,9 @@
               <div class="row">
                 <div class="col-12 d-flex justify-content-between align-items-center">
                   <span class="small">* Required fields</span>
-                  <button type="submit" class="btn btn-lg btn-primary" id="calculate" [disabled]="!calculateTaxForm.valid">Calculate</button>
+                  <button type="submit" class="btn btn-lg btn-primary" id="calculate"
+                          [disabled]="!calculateTaxForm.valid">Calculate
+                  </button>
                 </div>
               </div>
             </div>
@@ -132,19 +136,23 @@
               <div class="row">
                 <div class="col-12">
                   Income tax before tax credits
-                  <div id="income_tax_before_tax_credits" class="float-right font-weight-bold" *ngIf="calculateTaxForm.valid">R {{incomeTaxResult.payAsYouEarnBeforeTaxCredit}}</div>
+                  <div id="income_tax_before_tax_credits" class="float-right font-weight-bold" *ngIf="incomeTaxResult">
+                    R {{incomeTaxResult.payAsYouEarnBeforeTaxCredit}}</div>
                 </div>
                 <div class="col-12">
                   Tax credits
-                  <div id="tax_credits" class="float-right font-weight-bold" *ngIf="calculateTaxForm.valid">R {{incomeTaxResult.taxCredits}}</div>
+                  <div id="tax_credits" class="float-right font-weight-bold" *ngIf="incomeTaxResult">
+                    R {{incomeTaxResult.taxCredits}}</div>
                 </div>
                 <div class="col-12">
                   Income tax after tax credits
-                  <div id="income_tax_after_tax_credits" class="float-right font-weight-bold" *ngIf="calculateTaxForm.valid">R {{incomeTaxResult.payAsYouEarnAfterTaxCredit}}</div>
+                  <div id="income_tax_after_tax_credits" class="float-right font-weight-bold" *ngIf="incomeTaxResult">
+                    R {{incomeTaxResult.payAsYouEarnAfterTaxCredit}}</div>
                 </div>
                 <div class="col-12">
                   Nett income
-                  <div id="net_monthly_income" class="float-right font-weight-bold" *ngIf="calculateTaxForm.valid">R {{incomeTaxResult.netCash}}</div>
+                  <div id="net_monthly_income" class="float-right font-weight-bold" *ngIf="incomeTaxResult">
+                    R {{incomeTaxResult.netCash}}</div>
                 </div>
               </div>
             </div>
